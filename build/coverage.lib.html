@@ -1,5 +1,7 @@
-<html lang="en"><head>
-    <title>Code coverage report for node-npmtest-ftp/ftp/lib/parser.js</title>
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-ftp/node_modules/ftp/lib/parser.js</title>
     <meta charset="utf-8">
     <style>
         body, html {
@@ -192,7 +194,7 @@
     <h1 style="font-weight: bold;">
         <a href="https://github.com/npmtest/node-npmtest-ftp">npmtest-ftp (v0.0.1)</a>
     </h1>
-    <h1>Code coverage report for <span class="entity">node-npmtest-ftp/ftp/lib/parser.js</span></h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-ftp/node_modules/ftp/lib/parser.js</span></h1>
     <h2>
         
         Statements: <span class="metric">10.31% <small>(10 / 97)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -208,11 +210,11 @@
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-ftp/ftp/lib/</a> » parser.js</div>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-ftp/node_modules/ftp/lib/</a> &#187; parser.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
-<tbody><tr><td class="line-count">1
+<tr><td class="line-count">1
 2
 3
 4
@@ -647,7 +649,7 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var WritableStream = require('stream').Writable
-                     || <span class="branch-1 cbranch-no" title="branch not covered">require('readable-stream').Writable,</span>
+                     || <span class="branch-1 cbranch-no" title="branch not covered" >require('readable-stream').Writable,</span>
     inherits = require('util').inherits,
     inspect = require('util').inspect;
 &nbsp;
@@ -665,71 +667,71 @@ var MONTHS = {
       jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12
     };
 &nbsp;
-<span class="fstat-no" title="function not covered">function Parser(options) {</span>
-<span class="cstat-no" title="statement not covered">  if (!(this instanceof Parser))</span>
-<span class="cstat-no" title="statement not covered">    return new Parser(options);</span>
-<span class="cstat-no" title="statement not covered">  WritableStream.call(this);</span>
+<span class="fstat-no" title="function not covered" >function Parser(options) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!(this instanceof Parser))</span>
+<span class="cstat-no" title="statement not covered" >    return new Parser(options);</span>
+<span class="cstat-no" title="statement not covered" >  WritableStream.call(this);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">  this._buffer = '';</span>
-<span class="cstat-no" title="statement not covered">  this._debug = options.debug;</span>
+<span class="cstat-no" title="statement not covered" >  this._buffer = '';</span>
+<span class="cstat-no" title="statement not covered" >  this._debug = options.debug;</span>
 }
 inherits(Parser, WritableStream);
 &nbsp;
-Parser.prototype._write = <span class="fstat-no" title="function not covered">function(chunk, encoding, cb) {</span>
-<span class="cstat-no" title="statement not covered">  var m, code, reRmLeadCode, rest = '', debug = this._debug;</span>
+Parser.prototype._write = <span class="fstat-no" title="function not covered" >function(chunk, encoding, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var m, code, reRmLeadCode, rest = '', debug = this._debug;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">  this._buffer += chunk.toString('binary');</span>
+<span class="cstat-no" title="statement not covered" >  this._buffer += chunk.toString('binary');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">  while (m = RE_RES_END.exec(this._buffer)) {</span>
+<span class="cstat-no" title="statement not covered" >  while (m = RE_RES_END.exec(this._buffer)) {</span>
     // support multiple terminating responses in the buffer
-<span class="cstat-no" title="statement not covered">    rest = this._buffer.substring(m.index + m[0].length);</span>
-<span class="cstat-no" title="statement not covered">    if (rest.length)</span>
-<span class="cstat-no" title="statement not covered">      this._buffer = this._buffer.substring(0, m.index + m[0].length);</span>
+<span class="cstat-no" title="statement not covered" >    rest = this._buffer.substring(m.index + m[0].length);</span>
+<span class="cstat-no" title="statement not covered" >    if (rest.length)</span>
+<span class="cstat-no" title="statement not covered" >      this._buffer = this._buffer.substring(0, m.index + m[0].length);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">    debug&amp;&amp;debug('[parser] &lt; ' + inspect(this._buffer));</span>
+<span class="cstat-no" title="statement not covered" >    debug&amp;&amp;debug('[parser] &lt; ' + inspect(this._buffer));</span>
 &nbsp;
     // we have a terminating response line
-<span class="cstat-no" title="statement not covered">    code = parseInt(m[1], 10);</span>
+<span class="cstat-no" title="statement not covered" >    code = parseInt(m[1], 10);</span>
 &nbsp;
     // RFC 959 does not require each line in a multi-line response to begin
     // with '&lt;code&gt;-', but many servers will do this.
     //
     // remove this leading '&lt;code&gt;-' (or '&lt;code&gt; ' from last line) from each
     // line in the response ...
-<span class="cstat-no" title="statement not covered">    reRmLeadCode = '(^|\\r?\\n)';</span>
-<span class="cstat-no" title="statement not covered">    reRmLeadCode += m[1];</span>
-<span class="cstat-no" title="statement not covered">    reRmLeadCode += '(?: |\\-)';</span>
-<span class="cstat-no" title="statement not covered">    reRmLeadCode = new RegExp(reRmLeadCode, 'g');</span>
-<span class="cstat-no" title="statement not covered">    var text = this._buffer.replace(reRmLeadCode, '$1').trim();</span>
-<span class="cstat-no" title="statement not covered">    this._buffer = rest;</span>
+<span class="cstat-no" title="statement not covered" >    reRmLeadCode = '(^|\\r?\\n)';</span>
+<span class="cstat-no" title="statement not covered" >    reRmLeadCode += m[1];</span>
+<span class="cstat-no" title="statement not covered" >    reRmLeadCode += '(?: |\\-)';</span>
+<span class="cstat-no" title="statement not covered" >    reRmLeadCode = new RegExp(reRmLeadCode, 'g');</span>
+<span class="cstat-no" title="statement not covered" >    var text = this._buffer.replace(reRmLeadCode, '$1').trim();</span>
+<span class="cstat-no" title="statement not covered" >    this._buffer = rest;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">    debug&amp;&amp;debug('[parser] Response: code=' + code + ', buffer=' + inspect(text));</span>
-<span class="cstat-no" title="statement not covered">    this.emit('response', code, text);</span>
+<span class="cstat-no" title="statement not covered" >    debug&amp;&amp;debug('[parser] Response: code=' + code + ', buffer=' + inspect(text));</span>
+<span class="cstat-no" title="statement not covered" >    this.emit('response', code, text);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered">  cb();</span>
+<span class="cstat-no" title="statement not covered" >  cb();</span>
 };
 &nbsp;
-Parser.parseFeat = <span class="fstat-no" title="function not covered">function(text) {</span>
-<span class="cstat-no" title="statement not covered">  var lines = text.split(RE_EOL);</span>
-<span class="cstat-no" title="statement not covered">  lines.shift(); </span>// initial response line
-<span class="cstat-no" title="statement not covered">  lines.pop(); </span>// final response line
+Parser.parseFeat = <span class="fstat-no" title="function not covered" >function(text) {</span>
+<span class="cstat-no" title="statement not covered" >  var lines = text.split(RE_EOL);</span>
+<span class="cstat-no" title="statement not covered" >  lines.shift(); </span>// initial response line
+<span class="cstat-no" title="statement not covered" >  lines.pop(); </span>// final response line
 &nbsp;
-<span class="cstat-no" title="statement not covered">  for (var i = 0, len = lines.length; i &lt; len; ++i)</span>
-<span class="cstat-no" title="statement not covered">    lines[i] = lines[i].trim();</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0, len = lines.length; i &lt; len; ++i)</span>
+<span class="cstat-no" title="statement not covered" >    lines[i] = lines[i].trim();</span>
 &nbsp;
   // just return the raw lines for now
-<span class="cstat-no" title="statement not covered">  return lines;</span>
+<span class="cstat-no" title="statement not covered" >  return lines;</span>
 };
 &nbsp;
-Parser.parseListEntry = <span class="fstat-no" title="function not covered">function(line) {</span>
-<span class="cstat-no" title="statement not covered">  var ret,</span>
+Parser.parseListEntry = <span class="fstat-no" title="function not covered" >function(line) {</span>
+<span class="cstat-no" title="statement not covered" >  var ret,</span>
       info,
       month, day, year,
       hour, mins;
 &nbsp;
-<span class="cstat-no" title="statement not covered">  if (ret = XRegExp.exec(line, REX_LISTUNIX)) {</span>
-<span class="cstat-no" title="statement not covered">    info = {</span>
+<span class="cstat-no" title="statement not covered" >  if (ret = XRegExp.exec(line, REX_LISTUNIX)) {</span>
+<span class="cstat-no" title="statement not covered" >    info = {</span>
       type: ret.type,
       name: undefined,
       target: undefined,
@@ -747,30 +749,30 @@ Parser.parseListEntry = <span class="fstat-no" title="function not covered">func
     };
 &nbsp;
     // check for sticky bit
-<span class="cstat-no" title="statement not covered">    var lastbit = info.rights.other.slice(-1);</span>
-<span class="cstat-no" title="statement not covered">    if (lastbit === 't') {</span>
-<span class="cstat-no" title="statement not covered">      info.rights.other = info.rights.other.slice(0, -1) + 'x';</span>
-<span class="cstat-no" title="statement not covered">      info.sticky = true;</span>
-    } else <span class="cstat-no" title="statement not covered">if (lastbit === 'T') {</span>
-<span class="cstat-no" title="statement not covered">      info.rights.other = info.rights.other.slice(0, -1);</span>
-<span class="cstat-no" title="statement not covered">      info.sticky = true;</span>
+<span class="cstat-no" title="statement not covered" >    var lastbit = info.rights.other.slice(-1);</span>
+<span class="cstat-no" title="statement not covered" >    if (lastbit === 't') {</span>
+<span class="cstat-no" title="statement not covered" >      info.rights.other = info.rights.other.slice(0, -1) + 'x';</span>
+<span class="cstat-no" title="statement not covered" >      info.sticky = true;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (lastbit === 'T') {</span>
+<span class="cstat-no" title="statement not covered" >      info.rights.other = info.rights.other.slice(0, -1);</span>
+<span class="cstat-no" title="statement not covered" >      info.sticky = true;</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered">    if (ret.month1 !== undefined) {</span>
-<span class="cstat-no" title="statement not covered">      month = parseInt(MONTHS[ret.month1.toLowerCase()], 10);</span>
-<span class="cstat-no" title="statement not covered">      day = parseInt(ret.date1, 10);</span>
-<span class="cstat-no" title="statement not covered">      year = (new Date()).getFullYear();</span>
-<span class="cstat-no" title="statement not covered">      hour = parseInt(ret.hour, 10);</span>
-<span class="cstat-no" title="statement not covered">      mins = parseInt(ret.minute, 10);</span>
-<span class="cstat-no" title="statement not covered">      if (month &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        month = '0' + month;</span>
-<span class="cstat-no" title="statement not covered">      if (day &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        day = '0' + day;</span>
-<span class="cstat-no" title="statement not covered">      if (hour &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        hour = '0' + hour;</span>
-<span class="cstat-no" title="statement not covered">      if (mins &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        mins = '0' + mins;</span>
-<span class="cstat-no" title="statement not covered">      info.date = new Date(year + '-'</span>
+<span class="cstat-no" title="statement not covered" >    if (ret.month1 !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      month = parseInt(MONTHS[ret.month1.toLowerCase()], 10);</span>
+<span class="cstat-no" title="statement not covered" >      day = parseInt(ret.date1, 10);</span>
+<span class="cstat-no" title="statement not covered" >      year = (new Date()).getFullYear();</span>
+<span class="cstat-no" title="statement not covered" >      hour = parseInt(ret.hour, 10);</span>
+<span class="cstat-no" title="statement not covered" >      mins = parseInt(ret.minute, 10);</span>
+<span class="cstat-no" title="statement not covered" >      if (month &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        month = '0' + month;</span>
+<span class="cstat-no" title="statement not covered" >      if (day &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        day = '0' + day;</span>
+<span class="cstat-no" title="statement not covered" >      if (hour &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        hour = '0' + hour;</span>
+<span class="cstat-no" title="statement not covered" >      if (mins &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        mins = '0' + mins;</span>
+<span class="cstat-no" title="statement not covered" >      info.date = new Date(year + '-'</span>
                            + month + '-'
                            + day + 'T'
                            + hour + ':'
@@ -787,8 +789,8 @@ Parser.parseListEntry = <span class="fstat-no" title="function not covered">func
       // If we're here with a time that is more than 28 hours into the
       // future (1 hour + maximum timezone offset which is 27 hours),
       // there is a problem -- we should be in the second conditional block
-<span class="cstat-no" title="statement not covered">      if (info.date.getTime() - Date.now() &gt; 100800000) {</span>
-<span class="cstat-no" title="statement not covered">        info.date = new Date((year - 1) + '-'</span>
+<span class="cstat-no" title="statement not covered" >      if (info.date.getTime() - Date.now() &gt; 100800000) {</span>
+<span class="cstat-no" title="statement not covered" >        info.date = new Date((year - 1) + '-'</span>
                              + month + '-'
                              + day + 'T'
                              + hour + ':'
@@ -804,71 +806,70 @@ Parser.parseListEntry = <span class="fstat-no" title="function not covered">func
       // 01/01/14 02:23 
       // Our trigger point will be 3600*24*31*6 (since we already use 31
       // as an upper bound, no need to add the 27 hours timezone offset)
-<span class="cstat-no" title="statement not covered">      if (Date.now() - info.date.getTime() &gt; 16070400000) {</span>
-<span class="cstat-no" title="statement not covered">        info.date = new Date((year + 1) + '-'</span>
+<span class="cstat-no" title="statement not covered" >      if (Date.now() - info.date.getTime() &gt; 16070400000) {</span>
+<span class="cstat-no" title="statement not covered" >        info.date = new Date((year + 1) + '-'</span>
                              + month + '-'
                              + day + 'T'
                              + hour + ':'
                              + mins);
       }
-    } else <span class="cstat-no" title="statement not covered">if (ret.month2 !== undefined) {</span>
-<span class="cstat-no" title="statement not covered">      month = parseInt(MONTHS[ret.month2.toLowerCase()], 10);</span>
-<span class="cstat-no" title="statement not covered">      day = parseInt(ret.date2, 10);</span>
-<span class="cstat-no" title="statement not covered">      year = parseInt(ret.year, 10);</span>
-<span class="cstat-no" title="statement not covered">      if (month &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        month = '0' + month;</span>
-<span class="cstat-no" title="statement not covered">      if (day &lt; 10)</span>
-<span class="cstat-no" title="statement not covered">        day = '0' + day;</span>
-<span class="cstat-no" title="statement not covered">      info.date = new Date(year + '-' + month + '-' + day);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (ret.month2 !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >      month = parseInt(MONTHS[ret.month2.toLowerCase()], 10);</span>
+<span class="cstat-no" title="statement not covered" >      day = parseInt(ret.date2, 10);</span>
+<span class="cstat-no" title="statement not covered" >      year = parseInt(ret.year, 10);</span>
+<span class="cstat-no" title="statement not covered" >      if (month &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        month = '0' + month;</span>
+<span class="cstat-no" title="statement not covered" >      if (day &lt; 10)</span>
+<span class="cstat-no" title="statement not covered" >        day = '0' + day;</span>
+<span class="cstat-no" title="statement not covered" >      info.date = new Date(year + '-' + month + '-' + day);</span>
     }
-<span class="cstat-no" title="statement not covered">    if (ret.type === 'l') {</span>
-<span class="cstat-no" title="statement not covered">      var pos = ret.name.indexOf(' -&gt; ');</span>
-<span class="cstat-no" title="statement not covered">      info.name = ret.name.substring(0, pos);</span>
-<span class="cstat-no" title="statement not covered">      info.target = ret.name.substring(pos+4);</span>
+<span class="cstat-no" title="statement not covered" >    if (ret.type === 'l') {</span>
+<span class="cstat-no" title="statement not covered" >      var pos = ret.name.indexOf(' -&gt; ');</span>
+<span class="cstat-no" title="statement not covered" >      info.name = ret.name.substring(0, pos);</span>
+<span class="cstat-no" title="statement not covered" >      info.target = ret.name.substring(pos+4);</span>
     } else
-<span class="cstat-no" title="statement not covered">      info.name = ret.name;</span>
-<span class="cstat-no" title="statement not covered">    ret = info;</span>
-  } else <span class="cstat-no" title="statement not covered">if (ret = XRegExp.exec(line, REX_LISTMSDOS)) {</span>
-<span class="cstat-no" title="statement not covered">    info = {</span>
+<span class="cstat-no" title="statement not covered" >      info.name = ret.name;</span>
+<span class="cstat-no" title="statement not covered" >    ret = info;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (ret = XRegExp.exec(line, REX_LISTMSDOS)) {</span>
+<span class="cstat-no" title="statement not covered" >    info = {</span>
       name: ret.name,
       type: (ret.isdir ? 'd' : '-'),
       size: (ret.isdir ? 0 : parseInt(ret.size, 10)),
       date: undefined,
     };
-<span class="cstat-no" title="statement not covered">    month = parseInt(ret.month, 10),</span>
+<span class="cstat-no" title="statement not covered" >    month = parseInt(ret.month, 10),</span>
     day = parseInt(ret.date, 10),
     year = parseInt(ret.year, 10),
     hour = parseInt(ret.hour, 10),
     mins = parseInt(ret.minute, 10);
 &nbsp;
-<span class="cstat-no" title="statement not covered">    if (year &lt; 70)</span>
-<span class="cstat-no" title="statement not covered">      year += 2000;</span>
+<span class="cstat-no" title="statement not covered" >    if (year &lt; 70)</span>
+<span class="cstat-no" title="statement not covered" >      year += 2000;</span>
     else
-<span class="cstat-no" title="statement not covered">      year += 1900;</span>
+<span class="cstat-no" title="statement not covered" >      year += 1900;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">    if (ret.ampm[0].toLowerCase() === 'p' &amp;&amp; hour &lt; 12)</span>
-<span class="cstat-no" title="statement not covered">      hour += 12;</span>
-    else <span class="cstat-no" title="statement not covered">if (ret.ampm[0].toLowerCase() === 'a' &amp;&amp; hour === 12)</span>
-<span class="cstat-no" title="statement not covered">      hour = 0;</span>
+<span class="cstat-no" title="statement not covered" >    if (ret.ampm[0].toLowerCase() === 'p' &amp;&amp; hour &lt; 12)</span>
+<span class="cstat-no" title="statement not covered" >      hour += 12;</span>
+    else <span class="cstat-no" title="statement not covered" >if (ret.ampm[0].toLowerCase() === 'a' &amp;&amp; hour === 12)</span>
+<span class="cstat-no" title="statement not covered" >      hour = 0;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">    info.date = new Date(year, month - 1, day, hour, mins);</span>
+<span class="cstat-no" title="statement not covered" >    info.date = new Date(year, month - 1, day, hour, mins);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered">    ret = info;</span>
-  } else <span class="cstat-no" title="statement not covered">if (!RE_ENTRY_TOTAL.test(line))</span>
-<span class="cstat-no" title="statement not covered">    ret = line; </span>// could not parse, so at least give the end user a chance to
+<span class="cstat-no" title="statement not covered" >    ret = info;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (!RE_ENTRY_TOTAL.test(line))</span>
+<span class="cstat-no" title="statement not covered" >    ret = line; </span>// could not parse, so at least give the end user a chance to
                 // look at the raw listing themselves
 &nbsp;
-<span class="cstat-no" title="statement not covered">  return ret;</span>
+<span class="cstat-no" title="statement not covered" >  return ret;</span>
 };
 &nbsp;
 module.exports = Parser;
 &nbsp;
 &nbsp;</pre></td></tr>
-</tbody></table></pre>
+</table></pre>
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 16:06:13 GMT+0000 (UTC)</div>
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 17 2017 21:14:23 GMT+0000 (UTC)</div>
 </div>
-
-
-</body></html>
+</body>
+</html>
